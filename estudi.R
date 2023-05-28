@@ -59,10 +59,49 @@ t.test(ratiRar, rati7z, paired = TRUE)
 t.test(ratiRarLog, rati7zLog, paired = TRUE)
 
 # Grafics curiositat
+categories <- c(
+  "AUDIO"=dades[dades$Categoria == "AUDIO",],
+  "VIDEO"=dades[dades$Categoria == "VIDEO",],
+  "IMAGE"=dades[dades$Categoria == "IMAGE",],
+  "TEXT"=dades[dades$Categoria == "TEXT",]
+)
+
 barplot(
   c(mean(dades$Mida), mean(dades$MidaRar), mean(dades$Mida7z))/1000000,
   names.arg = c("Sense comprimir", "Compressió RAR", "Compressió 7z"),
   ylim = c(0, 1.2),
   main = "Mitjana de mides",
   ylab = "Tamany (en MB)"
+)
+
+barplot(
+  c(mean(categories$AUDIO.Mida), mean(categories$AUDIO.MidaRar), mean(categories$AUDIO.Mida7z))/1000000,
+  names.arg = c("Sense comprimir", "Compressió RAR", "Compressió 7z"),
+  ylim = c(0, 3.5),
+  main = "Mitjana de mides d'arxius AUDIO",
+  ylab = "Tamany (en MB)"
+)
+
+barplot(
+  c(mean(categories$VIDEO.Mida), mean(categories$VIDEO.MidaRar), mean(categories$VIDEO.Mida7z))/1000000,
+  names.arg = c("Sense comprimir", "Compressió RAR", "Compressió 7z"),
+  ylim = c(0, 4.3),
+  main = "Mitjana de mides d'arxius VIDEO",
+  ylab = "Tamany (en MB)"
+)
+
+barplot(
+  c(mean(categories$IMAGE.Mida), mean(categories$IMAGE.MidaRar), mean(categories$IMAGE.Mida7z))/1000000,
+  names.arg = c("Sense comprimir", "Compressió RAR", "Compressió 7z"),
+  ylim = c(0, 1.8),
+  main = "Mitjana de mides d'arxius IMATGE",
+  ylab = "Tamany (en MB)"
+)
+
+barplot(
+  c(mean(categories$TEXT.Mida), mean(categories$TEXT.MidaRar), mean(categories$TEXT.Mida7z))/1000,
+  names.arg = c("Sense comprimir", "Compressió RAR", "Compressió 7z"),
+  ylim = c(0, 50),
+  main = "Mitjana de mides d'arxius TEXT",
+  ylab = "Tamany (en KB)"
 )
