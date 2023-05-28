@@ -66,42 +66,52 @@ categories <- c(
   "TEXT"=dades[dades$Categoria == "TEXT",]
 )
 
+png("mitjanamida_barplot.png", width = 500, height = 500)
 barplot(
   c(mean(dades$Mida), mean(dades$MidaRar), mean(dades$Mida7z))/1000000,
-  names.arg = c("Sense comprimir", "Compressió RAR", "Compressió 7z"),
+  names.arg = c("Sense comprimir", "RAR", "7z"),
   ylim = c(0, 1.2),
   main = "Mitjana de mides",
   ylab = "Tamany (en MB)"
 )
+dev.off()
 
+png("mitjanamida_audio_barplot.png", width = 500, height = 500)
 barplot(
   c(mean(categories$AUDIO.Mida), mean(categories$AUDIO.MidaRar), mean(categories$AUDIO.Mida7z))/1000000,
-  names.arg = c("Sense comprimir", "Compressió RAR", "Compressió 7z"),
+  names.arg = c("Sense comprimir", "RAR", "7z"),
   ylim = c(0, 3.5),
   main = "Mitjana de mides d'arxius AUDIO",
   ylab = "Tamany (en MB)"
 )
+dev.off()
 
+png("mitjanamida_video_barplot.png", width = 500, height = 500)
 barplot(
   c(mean(categories$VIDEO.Mida), mean(categories$VIDEO.MidaRar), mean(categories$VIDEO.Mida7z))/1000000,
-  names.arg = c("Sense comprimir", "Compressió RAR", "Compressió 7z"),
+  names.arg = c("Sense comprimir", "RAR", "7z"),
   ylim = c(0, 4.3),
   main = "Mitjana de mides d'arxius VIDEO",
   ylab = "Tamany (en MB)"
 )
+dev.off()
 
+png("mitjanamida_image_barplot.png", width = 500, height = 500)
 barplot(
   c(mean(categories$IMAGE.Mida), mean(categories$IMAGE.MidaRar), mean(categories$IMAGE.Mida7z))/1000000,
-  names.arg = c("Sense comprimir", "Compressió RAR", "Compressió 7z"),
+  names.arg = c("Sense comprimir", "RAR", "7z"),
   ylim = c(0, 1.8),
   main = "Mitjana de mides d'arxius IMATGE",
   ylab = "Tamany (en MB)"
 )
+dev.off()
 
+png("mitjanamida_text_barplot.png", width = 500, height = 500)
 barplot(
   c(mean(categories$TEXT.Mida), mean(categories$TEXT.MidaRar), mean(categories$TEXT.Mida7z))/1000,
-  names.arg = c("Sense comprimir", "Compressió RAR", "Compressió 7z"),
+  names.arg = c("Sense comprimir", "RAR", "7z"),
   ylim = c(0, 50),
   main = "Mitjana de mides d'arxius TEXT",
   ylab = "Tamany (en KB)"
 )
+dev.off()
