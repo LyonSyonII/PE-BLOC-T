@@ -1,3 +1,5 @@
+source("plots.R")
+
 # Ruta del fitxer CSV
 csv <- "Dades.csv"
 
@@ -5,6 +7,7 @@ csv <- "Dades.csv"
 dades <- read.csv(csv)
 
 mitjana_mida <- mean(dades$Mida)
+summary(dades$Rati7z)
 
 # Obtenim el model normal per a la mida RAR
 mitjana_mida_rar <- mean(dades$MidaRar)
@@ -39,6 +42,42 @@ qqline(dades$RatiRar)
 qqnorm(dades$Rati7z)
 qqline(dades$Rati7z)
 
+qqnorm(dades$RatiRar-dades$Rati7z, main="Rati (RAR-7z)")
+qqline(dades$RatiRar-dades$Rati7z)
+summary(dades$RatiRar-dades$Rati7z)
+
+
+# Provem amb les mostres aparellades i fent el logaritme
+fitxersText <- dades[dades$Categoria == "TEXT",]
+fitxersTxt <- fitxersText[fitxersText$Tipus == "TXT",]
+fitxersHtml <- fitxersText[fitxersText$Tipus == "HTML",]
+
+# Nomes els fitxers de text
+fitxersTextDif <- fitxersText$RatiRar - fitxersText$Rati7z
+qqnorm(fitxersTextDif, main="Rati (RAR-7z)")
+qqline(fitxersTextDif)
+
+# Nomes els fitxers .txt
+fitxersTxtDif <- fitxersTxt$RatiRar - fitxersTxt$Rati7z
+qqnorm(fitxersTxtDif, main="Rati (RAR-7z)")
+qqline(fitxersTxtDif)
+
+# Nomes els fitxers HTML
+fitxersHtmlDif <- fitxersHtml$RatiRar - fitxersHtml$Rati7z
+qqnorm(fitxersHtmlDif, main="Rati (RAR-7z)")
+qqline(fitxersHtmlDif)
+
+# Boxplot
+boxplot_custom(dades$RatiRar, dades$Rati7z, main="Boxplot ràtio de compressió", ylab="Ràtio de compressió (mida final / mida inicial)")
+
+qqnorm(log(dades$RatiRar)-log(dades$Rati7z), main="Rati log(RAR-7z)")
+qqline(log(dades$RatiRar)-log(dades$Rati7z))
+
+# t.test dels les ràtios
+# Com que son mostres aparellades, 
+t.test(log(dades$RatiRar), log(dades$Rati7z), paired=TRUE)
+
+
 # Provarem amb el tipus de fitxer "TEXT"
 par(mfrow = c(1, 2))
 
@@ -65,3 +104,8 @@ for (tipus in tipus_dades) {
          main = paste("Rati 7z", tipus))
   qqline(fitxers$Rati7z)
 }
+
+# Summary de dades
+summary(dades$RatiRar)
+summary(dades$Rati7z)
+summary(dades$RatiRar-dades$Rati7z)
