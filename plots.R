@@ -29,6 +29,11 @@ boxplot_custom <- function(..., ylab, main, names = c()) {
   }
 }
 
+qqnorm_custom <- function(data, main) {
+  qqnorm(data, main=main)
+  qqline(data)
+}
+
 
 
 
