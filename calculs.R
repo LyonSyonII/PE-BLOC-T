@@ -42,20 +42,35 @@ qqline(dades$RatiRar)
 qqnorm(dades$Rati7z)
 qqline(dades$Rati7z)
 
-qqnorm(dades$RatiRar-dades$Rati7z, main="Rati (RAR-7z)")
-qqline(dades$RatiRar-dades$Rati7z)
-summary(dades$RatiRar-dades$Rati7z)
 
 
-# Provem amb les mostres aparellades i fent el logaritme
+# Tots els fitxers
+ratiDif <- dades$RatiRar-dades$Rati7z
+
+qqnorm(ratiDif, main="Rati (RAR-7z)")
+qqline(ratiDif)
+summary(ratiDif)
+boxplot_custom(
+  fitxersText$RatiRar, fitxersText$Rati7z, 
+  main="Boxplot ràtio de compressió", 
+  ylab="Ràtio de compressió (mida final / mida inicial)",
+  names=c("RAR", "7z")
+)
+
+# Nomes els fitxers de text
 fitxersText <- dades[dades$Categoria == "TEXT",]
 fitxersTxt <- fitxersText[fitxersText$Tipus == "TXT",]
 fitxersHtml <- fitxersText[fitxersText$Tipus == "HTML",]
 
-# Nomes els fitxers de text
 fitxersTextDif <- fitxersText$RatiRar - fitxersText$Rati7z
 qqnorm(fitxersTextDif, main="Rati (RAR-7z)")
 qqline(fitxersTextDif)
+boxplot_custom(
+  fitxersText$RatiRar, fitxersText$Rati7z, 
+  main="Boxplot ràtio de compressió", 
+  ylab="Ràtio de compressió (mida final / mida inicial)",
+  names=c("RAR", "7z")
+)
 
 # Nomes els fitxers .txt
 fitxersTxtDif <- fitxersTxt$RatiRar - fitxersTxt$Rati7z
@@ -70,8 +85,12 @@ qqline(fitxersHtmlDif)
 # Boxplot
 boxplot_custom(dades$RatiRar, dades$Rati7z, main="Boxplot ràtio de compressió", ylab="Ràtio de compressió (mida final / mida inicial)")
 
-qqnorm(log(dades$RatiRar)-log(dades$Rati7z), main="Rati log(RAR-7z)")
-qqline(log(dades$RatiRar)-log(dades$Rati7z))
+# Proves amb logaritme
+ratiRarLog <- log(dades$RatiRar)
+rati7zLog <- log(dades$Rati7z)
+ratiLogDif <- ratiRarLog-rati7zLog
+qqnorm(ratiLogDif, main="Rati log(RAR-7z)")
+qqline(ratiLogDif)
 
 # t.test dels les ràtios
 # Com que son mostres aparellades, 
