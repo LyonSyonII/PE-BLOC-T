@@ -81,7 +81,42 @@ boxplot_custom(
   main = "Boxplot de ràtios",
   ylab = "Ràtio de compressió (mida final / mida inicial)",
   names = c("RAR", "7z"),
-  save = TRUE
+  save2png = TRUE
+)
+
+boxplot_custom(
+  categories$AUDIO.RatiRar, categories$AUDIO.Rati7z,
+  main = "Boxplot de ràtios d'arxius d'ÀUDIO",
+  ylab = "Ràtio de compressió (mida final / mida inicial)",
+  names = c("RAR", "7z"),
+  save2png = TRUE,
+  notch = FALSE
+)
+
+boxplot_custom(
+  categories$VIDEO.RatiRar, categories$VIDEO.Rati7z,
+  main = "Boxplot de ràtios d'arxius de VÍDEO",
+  ylab = "Ràtio de compressió (mida final / mida inicial)",
+  names = c("RAR", "7z"),
+  save2png = TRUE
+)
+
+boxplot_custom(
+  categories$IMAGE.RatiRar, categories$IMAGE.Rati7z,
+  main = "Boxplot de ràtios d'arxius d'IMATGE",
+  ylab = "Ràtio de compressió (mida final / mida inicial)",
+  names = c("RAR", "7z"),
+  save2png = TRUE,
+  notch = FALSE
+)
+
+boxplot_custom(
+  categories$TEXT.RatiRar, categories$TEXT.Rati7z,
+  main = "Boxplot de ràtios d'arxius de TEXT",
+  ylab = "Ràtio de compressió (mida final / mida inicial)",
+  names = c("RAR", "7z"),
+  save2png = TRUE,
+  notch = FALSE
 )
 
 png("mitjanamida_audio_barplot.png", width = 500, height = 500)

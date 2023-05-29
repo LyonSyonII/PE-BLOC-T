@@ -1,4 +1,4 @@
-boxplot_custom <- function(..., ylab, main, names = c(), save2png = FALSE) {
+boxplot_custom <- function(..., ylab, main, names = c(), save2png = FALSE, notch = TRUE) {
   if (save2png) {
     png(paste0(main, ".png"), width = 500, height = 500);
   }
@@ -15,7 +15,7 @@ boxplot_custom <- function(..., ylab, main, names = c(), save2png = FALSE) {
     whiskcol = "blue",
     whisklty = 2,
     lty = 1,
-    notch = TRUE,
+    notch = notch,
     names = names
   )
   
