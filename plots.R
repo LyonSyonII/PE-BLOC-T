@@ -1,4 +1,8 @@
-boxplot_custom <- function(..., ylab, main, names = c()) {
+boxplot_custom <- function(..., ylab, main, names = c(), save2png = FALSE) {
+  if (save2png) {
+    png(paste0(main, ".png"), width = 500, height = 500);
+  }
+  
   boxplot(
     ...,
     lwd = 2,
@@ -26,6 +30,10 @@ boxplot_custom <- function(..., ylab, main, names = c()) {
       pch = 18
     )
     i <- i + 1
+  }
+  
+  if (save2png) {
+    dev.off()
   }
 }
 

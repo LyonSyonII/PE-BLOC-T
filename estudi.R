@@ -76,6 +76,14 @@ barplot(
 )
 dev.off()
 
+boxplot_custom(
+  dades$RatiRar, dades$Rati7z,
+  main = "Boxplot de ràtios",
+  ylab = "Ràtio de compressió (mida final / mida inicial)",
+  names = c("RAR", "7z"),
+  save = TRUE
+)
+
 png("mitjanamida_audio_barplot.png", width = 500, height = 500)
 barplot(
   c(mean(categories$AUDIO.Mida), mean(categories$AUDIO.MidaRar), mean(categories$AUDIO.Mida7z))/1000000,
